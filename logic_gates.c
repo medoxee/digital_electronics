@@ -64,4 +64,5 @@ int	main(void)
 		output = functions[i](A, B);
 		printf("%s = %d\n", logic_func_names[i], output);
 	}
+	return 0;
 }
