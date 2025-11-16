@@ -11,54 +11,56 @@
  */
 
 // start of main logical functions
-int	NOT(int	X)
+int	not(int	X)
 {
 	return	!(X);
 }
 
-int	AND(int	A, int	B)
+int	and(int	A, int	B)
 {
 	return	(A && B);
 }
 
-int	OR(int	A, int	B)
+int	or(int	A, int	B)
 {
 	return (A || B);
 }
 // end of main logical functions.
 
-int	NAND(int	A, int	B)
+int	nand(int	A, int	B)
 {
-	return NOT(AND(A, B));
+	return not(and(A, B));
 }
 
-int	NOR(int	A, int	B)
+int	nor(int	A, int	B)
 {
-	return NOT(OR(A, B));
+	return not(or(A, B));
 }
 
-int	XOR(int	A, int	B)
+int	xor(int	A, int	B)
 {
-	return OR(AND(A, NOT(B)), AND(NOT(A), B));
+	return or(and(A, not(B)), and(not(A), B));
 }
 
-int	XNOR(int	A, int	B)
+int	xnor(int	A, int	B)
 {
-	return NOT(XOR(A, B));
+	return not(xor(A, B));
 }
 
 int	main(void)
 {
-	char	*logic_func_names[NUM_OF_LOGIC_FUNC] = {"AND", "OR", "NAND", "NOR", "XOR", "XNOR"};
-	int	(*functions[NUM_OF_LOGIC_FUNC])(int, int) = {AND, OR, NAND, NOR, XOR, XNOR}; // array of logical functions(NOT is excluded)
+	char	*logic_func_names[NUM_OF_LOGIC_FUNC] = {"and", "or", "nand", "nor", "xor", "xnor"};
+	int	(*functions[NUM_OF_LOGIC_FUNC])(int, int) = {and, or, nand, nor, xor, xnor}; // array of logical functions(NOT is excluded)
 	int	A;
 	int	B;
 	int	output; // result of A * B (*: operation)
-	
+		
 	printf("Enter A and B values(0 or 1): ");
-	scanf("%d %d", &A, &B);
-	// printf("Enter the logical function(AND or OR ...): ");
-	// scanf("%s", &logical_function);
+	if (scanf("%d %d", &A, &B) != 2)
+	{
+		printf("Invalid input (A and B must be 0 or 1)\n");
+		return 1;
+	}
 	for (int i = 0; i < NUM_OF_LOGIC_FUNC; i++)
 	{
 		output = functions[i](A, B);
